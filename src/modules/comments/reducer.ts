@@ -47,7 +47,6 @@ const initialState: CommentsInfoState = [
     content: '춘식스',
     date: '2021-02-10 23:26:36',
     responseId: null,
-  }
   },
 ];
 
