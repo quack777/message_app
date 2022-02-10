@@ -7,41 +7,56 @@ import ChatForm from '../components/ChatForm';
 import userInfo from '../data/tmpUser.json';
 import type { RootState } from '../modules/index';
 import type { CommentInfo } from '../modules/comments';
-import Modal from '../components/common/Modal';
 
 const CommentsLoader: FC = () => {
   const comments = useSelector((state: RootState) => state.comments);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const addCommentInfo = (content: string, keyCode: string) => {
     if (content === '') return;
 
-    if (keyCode === 'Enter' || keyCode === '') {
-      // const currentDate = createDate();
 
-      const date = '2021-02-10 23:26:34';
-      const { user } = userInfo;
-      const messageId = 0;
+    if(keyCode === 'Enter' || keyCode === '') {
+      
+    const { user } = userInfo;
+    const messageId = 0;
+    const date = '2021-02-10 23:26:34';
+    // const currentDate = createDate();
 
-      const commentInfo: CommentInfo = {
-        ...user,
-        date,
-        content,
-        messageId,
-      };
-
+    const commentInfo: CommentInfo = {
+      ...user,
+      date,
+      content,
+      messageId,
+      responseId: null
+    }
+      
       dispatch(addComment(commentInfo));
     }
   };
 
   const deleteCommentInfo = (messageId: number) => {
-    console.log(messageId);
     dispatch(deleteComment(messageId));
   };
+
+  const responseCommentInfo = (responseId: number) => {
+    const { user } = userInfo;
+    const messageId = 0;
+
+    const commentInfo: CommentInfo = {
+      ...user,
+      date: "",
+      messageId,
+      responseId,
+      content: ''
+    }
+  
+    dispatch(addComment(commentInfo));
+  }
+
   return (
     <ChatFromTemplate>
-      <ChatForm comments={comments} addCommentInfo={addCommentInfo} deleteCommentInfo={deleteCommentInfo} />
-      <Modal />
+      <ChatForm comments={comments} addCommentInfo={addCommentInfo} deleteCommentInfo={deleteCommentInfo} responseCommentInfo={responseCommentInfo}/>
     </ChatFromTemplate>
   );
 };
