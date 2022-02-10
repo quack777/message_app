@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import type { CommentInfo } from '../modules/comments';
-import Button from './common/Button'
+import Button from './common/Button';
 
 type ChatFormProps = {
   comments: CommentInfo[];
@@ -13,43 +13,38 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
   const [commentContent, setCommentContent] = useState<string>('');
 
   const changeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const currentContent =  e.target.value;
+    const currentContent = e.target.value;
     setCommentContent(currentContent);
-  }
+  };
 
   useEffect(() => {
-      setCommentContent('');
+    setCommentContent('');
   }, [comments]);
 
   return (
     <Container>
       <div>채팅방 제목</div>
       <div>
-        {
-          comments.map((comment: CommentInfo) => {
-            return (
-              <TestComment key={comment.userid}>
-                {
-                  comment.userid
-                }
-                {
-                  comment.userName
-                }
-                  <img alt="test" src={`${comment.profileImage}`} style={{width: '100px', height: '100px'}}/>
-                {
-                  comment.content
-                }
-                {
-                  comment.date
-                }
-              </TestComment>
-            )
-          })
-        }
+        {comments.map((comment: CommentInfo) => {
+          return (
+            <TestComment key={comment.userid}>
+              {comment.userid}
+              {comment.userName}
+              <img alt="test" src={`${comment.profileImage}`} style={{ width: '100px', height: '100px' }} />
+              {comment.content}
+              {comment.date}
+            </TestComment>
+          );
+        })}
       </div>
       <ChatInputContainer>
-        <ChatInput value={commentContent} onKeyPress={(e) => addCommentInfo(commentContent, e.code)} placeholder="Write a message" onChange={changeContent}/>
-        <ChatSummitButton  onClick={() => addCommentInfo(commentContent, '')}>전송</ChatSummitButton>
+        <ChatInput
+          value={commentContent}
+          onKeyPress={(e) => addCommentInfo(commentContent, e.code)}
+          placeholder="Write a message"
+          onChange={changeContent}
+        />
+        <ChatSummitButton onClick={() => addCommentInfo(commentContent, '')}>전송</ChatSummitButton>
       </ChatInputContainer>
     </Container>
   );
