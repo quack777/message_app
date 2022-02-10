@@ -13,11 +13,26 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
     <Container>
       <div>채팅방 제목</div>
       <div>채팅 내용</div>
-      <div>입력박스</div>
+      <ChatInputContainer>
+        <ChatInput placeholder="Write a message" />
+        <ChatSummitButton>전송</ChatSummitButton>
+      </ChatInputContainer>
     </Container>
   );
 };
 
 const Container = styled.div``;
+const ChatInputContainer = styled.div`
+  display: flex;
+`;
+const ChatInput = styled.textarea`
+  flex: 4;
+  padding: 15px 10px;
+  padding-bottom: 0px;
+  resize: none;
+`;
+const ChatSummitButton = styled.button`
+  flex: 1;
+`;
 
 export default ChatForm;
