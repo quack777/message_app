@@ -26,6 +26,22 @@ const initialState: CommentsInfoState = [
     profileImage: './img/profile_byeonghyeon.jpeg',
     content: '안녕하세요! 병현이예요~',
     date: '2021-02-10 23:26:34',
+  },
+  {
+    userid: 2,
+    messageId: 4,
+    userName: '은총',
+    profileImage: './img/profile_eunchong.jpg',
+    content: '은총입니다..!',
+    date: '2021-02-10 23:26:35',
+  },
+  {
+    userid: 1,
+    messageId: 5,
+    userName: '춘식',
+    profileImage: './img/profile_yongwoo.png',
+    content: '춘식스',
+    date: '2021-02-10 23:26:36',
   }
 ];
 

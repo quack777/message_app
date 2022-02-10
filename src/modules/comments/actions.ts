@@ -5,7 +5,7 @@ export const ADD_COMMENT = 'comments/ADD_COMMENT' as const;
 export const DELETE_COMMENT = 'comments/DELETE_COMMENT';
 export const RESPONSE_COMMENT = 'comments/RESPONSE_COMMENT';
 
-let nextId = 3;
+let nextId = 5;
 
 export const addComment = (commentInfo: CommentInfo) => ({
     type: ADD_COMMENT,
