@@ -6,21 +6,43 @@ import Button from './common/Button'
 type ChatFormProps = {
   comments: CommentInfo[];
   addCommentInfo: (content: string, keyCode: string) => void;
-  deleteCommentInfo: (userid: number) => void;
+  deleteCommentInfo: (messageId: number) => void;
+  responseCommentInfo: (responseId: number) => void;
 };
 
-const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentInfo }) => {
+const test = (comments: CommentInfo[]): boolean => {
+  let isSubmitSuccess = true;
+    for(let i = 0; i < comments.length; i++) {
+      if(comments[i].content === '') {
+        isSubmitSuccess = false;
+        break;
+      }
+    }
+    return isSubmitSuccess;
+}
+
+const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentInfo, responseCommentInfo }) => {
   const [commentContent, setCommentContent] = useState<string>('');
+  const [isAwaitResponse, setIsAwaitResponse] = useState<boolean>(false);
 
   const changeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const currentContent =  e.target.value;
     setCommentContent(currentContent);
   }
 
+  const handleResponseCommentInfo = (responseId: number): void => {
+    if(isAwaitResponse) return;
+      responseCommentInfo(responseId);
+      setIsAwaitResponse(true);
+  }
+
   useEffect(() => {
       setCommentContent('');
+      setIsAwaitResponse(test(comments));
   }, [comments]);
+
   
+  console.log(comments);
   return (
     <Container>
       <div>채팅방 제목</div>
@@ -28,7 +50,9 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
         {
           comments.map((comment: CommentInfo) => {
             return (
-              <TestChatForm key={comment.messageId} >
+              comment.content !== '' && (
+                <TestChatForm key={comment.messageId} >
+                <button  type="button" onClick={() => handleResponseCommentInfo(comment.messageId)}>답장</button>
                 {
                   comment.userid
                 }
@@ -43,6 +67,7 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
                   comment.date
                 }
               </TestChatForm>
+              )
             )
           })
         }

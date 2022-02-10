@@ -10,6 +10,7 @@ const initialState: CommentsInfoState = [
     profileImage: './img/profile_yongwoo.png',
     content: '안녕하세요! 춘식입니다.',
     date: '2021-02-10 23:26:30',
+    responseId: null,
   },
   {
     userid: 2,
@@ -18,6 +19,7 @@ const initialState: CommentsInfoState = [
     profileImage: './img/profile_eunchong.jpg',
     content: '안녕하세요! 은총입니다!',
     date: '2021-02-10 23:26:32',
+    responseId: null,
   },
   {
     userid: 3,
@@ -26,6 +28,7 @@ const initialState: CommentsInfoState = [
     profileImage: './img/profile_byeonghyeon.jpeg',
     content: '안녕하세요! 병현이예요~',
     date: '2021-02-10 23:26:34',
+    responseId: null,
   },
   {
     userid: 2,
@@ -34,6 +37,7 @@ const initialState: CommentsInfoState = [
     profileImage: './img/profile_eunchong.jpg',
     content: '은총입니다..!',
     date: '2021-02-10 23:26:35',
+    responseId: null,
   },
   {
     userid: 1,
@@ -42,6 +46,7 @@ const initialState: CommentsInfoState = [
     profileImage: './img/profile_yongwoo.png',
     content: '춘식스',
     date: '2021-02-10 23:26:36',
+    responseId: null,
   }
 ];
 

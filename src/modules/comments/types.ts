@@ -10,6 +10,7 @@ export type CommentInfo = {
   profileImage: string;
   content: string;
   date: string;
+  responseId: number | null;
 };
 
 export type CommentsInfoState = CommentInfo[];
