@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import comments from '../../modules/comments/reducer';
 import { CommentsInfoState, CommentInfo } from '../../modules/comments';
 import Button from '../common/Button';
+import { RootState } from '../../modules';
 
 interface Props {
   comment: CommentInfo;
@@ -11,8 +12,29 @@ interface Props {
 }
 
 const ChatBubble = ({ comment, handlerFunction }: Props) => {
+  const [response, setResponse] = useState<CommentInfo | undefined | null>(null);
+
+  const findResponseContent = (responseId: number): void => {
+    const comments = useSelector((state: RootState) => state.comments);
+    const findResponse = comments.find((comment) => responseId === comment.messageId);
+    setResponse(findResponse);
+  };
+
+  useEffect(() => {
+    if (comment.responseId) {
+      findResponseContent(comment.responseId);
+    }
+  }, []);
+
   return (
     <ChatBubbleBox>
+      {response && (
+        <div>
+          <p>{response.userName}</p>
+          <p>{response.content}</p>
+          <p>(회신)</p>
+        </div>
+      )}
       <ChatBubbleImage>
         <img alt="img" src={comment.profileImage} style={{ borderRadius: '100%', width: '54px', height: '54px' }} />{' '}
       </ChatBubbleImage>

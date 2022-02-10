@@ -7,6 +7,7 @@ import ChatForm from '../components/ChatForm';
 import userInfo from '../data/tmpUser.json';
 import type { RootState } from '../modules/index';
 import type { CommentInfo } from '../modules/comments';
+import SendDate from '../utils/SendDate';
 
 const CommentsLoader: FC = () => {
   const comments = useSelector((state: RootState) => state.comments);
@@ -18,8 +19,8 @@ const CommentsLoader: FC = () => {
     if (keyCode === 'Enter' || keyCode === '') {
       const { user } = userInfo;
       const messageId = 0;
-      const date = '2021-02-10 23:26:34';
-      // const currentDate = createDate();
+      const date = SendDate();
+      // const responseId: 답장 버튼 클리식 여기주기 답장 Id주기;
 
       const commentInfo: CommentInfo = {
         ...user,
