@@ -1,11 +1,11 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import type { CommentInfo } from '../modules/comments';
 import Button from './common/Button'
 
 type ChatFormProps = {
   comments: CommentInfo[];
-  addCommentInfo: (commentContent: string) => void;
+  addCommentInfo: (content: string, keyCode: string) => void;
   deleteCommentInfo: (userid: number) => void;
 };
 
@@ -16,6 +16,10 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
     const currentContent =  e.target.value;
     setCommentContent(currentContent);
   }
+
+  useEffect(() => {
+      setCommentContent('');
+  }, [comments]);
 
   return (
     <Container>
@@ -44,8 +48,8 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
         }
       </div>
       <ChatInputContainer>
-        <ChatInput placeholder="Write a message" onChange={changeContent}/>
-        <ChatSummitButton onClick={() => addCommentInfo(commentContent)}>전송</ChatSummitButton>
+        <ChatInput value={commentContent} onKeyPress={(e) => addCommentInfo(commentContent, e.code)} placeholder="Write a message" onChange={changeContent}/>
+        <ChatSummitButton  onClick={() => addCommentInfo(commentContent, '')}>전송</ChatSummitButton>
       </ChatInputContainer>
     </Container>
   );

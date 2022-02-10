@@ -13,10 +13,12 @@ const CommentsLoader: FC = () => {
   const comments = useSelector((state: RootState) => state.comments);
   const dispatch = useDispatch();
 
-  const addCommentInfo = (content: string) => {
+  const addCommentInfo = (content: string, keyCode: string) => {
     if(content === '') return;    
 
-    // const currentDate = createDate();
+    if(keyCode === 'Enter' || keyCode === '') {
+      // const currentDate = createDate();
+      
     const date = '2021-02-10 23:26:34';
     const { user } = userInfo;
 
@@ -27,8 +29,9 @@ const CommentsLoader: FC = () => {
     }
 
     dispatch(addComment(commentInfo));
+    }
   };
-  
+
   const deleteCommentInfo = (userid: number) => {
     dispatch(deleteComment(userid));
   };
