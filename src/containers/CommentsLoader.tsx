@@ -18,6 +18,17 @@ const CommentsLoader: FC = () => {
 
     if (keyCode === 'Enter' || keyCode === '') {
       // const currentDate = createDate();
+      
+    const date = '2021-02-10 23:26:34';
+    const { user } = userInfo;
+    const messageId = 0;
+
+    const commentInfo: CommentInfo = {
+      ...user,
+      date,
+      content,
+      messageId,
+    }
 
       const date = '2021-02-10 23:26:34';
       const { user } = userInfo;
@@ -32,8 +43,9 @@ const CommentsLoader: FC = () => {
     }
   };
 
-  const deleteCommentInfo = (userid: number) => {
-    dispatch(deleteComment(userid));
+  const deleteCommentInfo = (messageId: number) => {
+    console.log(messageId);
+    dispatch(deleteComment(messageId));
   };
 
   return (

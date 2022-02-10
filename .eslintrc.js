@@ -1,3 +1,5 @@
+const { off } = require("process");
+
 module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint', 'prettier'],
@@ -27,5 +29,7 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    "prefer-const": 'off',
+    'no-plusplus': 'off',
   },
 };

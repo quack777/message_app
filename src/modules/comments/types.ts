@@ -5,6 +5,7 @@ export type CommentsAction = ActionType<typeof actions>;
 
 export type CommentInfo = {
   userid: number;
+  messageId: number;
   userName: string;
   profileImage: string;
   content: string;

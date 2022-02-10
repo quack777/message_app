@@ -20,22 +20,32 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
   useEffect(() => {
     setCommentContent('');
   }, [comments]);
-
+  
   return (
     <Container>
       <div>채팅방 제목</div>
       <div>
-        {comments.map((comment: CommentInfo) => {
-          return (
-            <TestComment key={comment.userid}>
-              {comment.userid}
-              {comment.userName}
-              <img alt="test" src={`${comment.profileImage}`} style={{ width: '100px', height: '100px' }} />
-              {comment.content}
-              {comment.date}
-            </TestComment>
-          );
-        })}
+        {
+          comments.map((comment: CommentInfo) => {
+            return (
+              <TestChatForm key={comment.messageId} >
+                {
+                  comment.userid
+                }
+                {
+                  comment.userName
+                }
+                  <img alt="test" src={`${comment.profileImage}`} style={{width: '100px', height: '100px'}}/>
+                {
+                  comment.content
+                }
+                {
+                  comment.date
+                }
+              </TestChatForm>
+            )
+          })
+        }
       </div>
       <ChatInputContainer>
         <ChatInput
@@ -52,7 +62,7 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
 
 const Container = styled.div``;
 
-const TestComment = styled.div`
+const TestChatForm = styled.div`
   margin: 20px 10px;
   font-size: 20px;
   font-weight: bold;
