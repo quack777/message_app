@@ -61,9 +61,10 @@ const ChatBubbleImage = styled.div`
   width: 54px;
   height: 54px;
 `;
-const ChatBubbleContent = styled.p`
+const ChatBubbleContent = styled.div`
   padding: 10px;
   hieght: 100%;
+  word-break: break-all;
   background-color: white;
   border-radius: 10px;
   width: 150px;
