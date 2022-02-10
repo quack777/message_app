@@ -1,6 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import type { CommentInfo } from '../modules/comments';
+import ChatBox from './chatBox/ChatBox';
+import ChatTitle from './chatBox/ChatTitle';
 import Button from './common/Button';
 
 type ChatFormProps = {
@@ -20,33 +22,11 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
   useEffect(() => {
     setCommentContent('');
   }, [comments]);
-  
+
   return (
     <Container>
-      <div>채팅방 제목</div>
-      <div>
-        {
-          comments.map((comment: CommentInfo) => {
-            return (
-              <TestChatForm key={comment.messageId} >
-                {
-                  comment.userid
-                }
-                {
-                  comment.userName
-                }
-                  <img alt="test" src={`${comment.profileImage}`} style={{width: '100px', height: '100px'}}/>
-                {
-                  comment.content
-                }
-                {
-                  comment.date
-                }
-              </TestChatForm>
-            )
-          })
-        }
-      </div>
+      <ChatTitle />
+      <ChatBox />
       <ChatInputContainer>
         <ChatInput
           value={commentContent}

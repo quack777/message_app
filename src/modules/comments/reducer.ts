@@ -42,7 +42,7 @@ const initialState: CommentsInfoState = [
     profileImage: './img/profile_yongwoo.png',
     content: '춘식스',
     date: '2021-02-10 23:26:36',
-  }
+  },
 ];
 
 const comments = createReducer<CommentsInfoState, CommentsAction>(initialState, {

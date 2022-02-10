@@ -7,7 +7,6 @@ import ChatForm from '../components/ChatForm';
 import userInfo from '../data/tmpUser.json';
 import type { RootState } from '../modules/index';
 import type { CommentInfo } from '../modules/comments';
-import Modal from '../components/common/Modal';
 
 const CommentsLoader: FC = () => {
   const comments = useSelector((state: RootState) => state.comments);
@@ -18,25 +17,16 @@ const CommentsLoader: FC = () => {
 
     if (keyCode === 'Enter' || keyCode === '') {
       // const currentDate = createDate();
-      
-    const date = '2021-02-10 23:26:34';
-    const { user } = userInfo;
-    const messageId = 0;
-
-    const commentInfo: CommentInfo = {
-      ...user,
-      date,
-      content,
-      messageId,
-    }
 
       const date = '2021-02-10 23:26:34';
       const { user } = userInfo;
+      const messageId = 0;
 
       const commentInfo: CommentInfo = {
         ...user,
         date,
         content,
+        messageId,
       };
 
       dispatch(addComment(commentInfo));
@@ -47,11 +37,9 @@ const CommentsLoader: FC = () => {
     console.log(messageId);
     dispatch(deleteComment(messageId));
   };
-
   return (
     <ChatFromTemplate>
       <ChatForm comments={comments} addCommentInfo={addCommentInfo} deleteCommentInfo={deleteCommentInfo} />
-      <Modal />
     </ChatFromTemplate>
   );
 };
