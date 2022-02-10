@@ -14,14 +14,14 @@ type ChatFormProps = {
 
 const test = (comments: CommentInfo[]): boolean => {
   let isSubmitSuccess = true;
-    for(let i = 0; i < comments.length; i++) {
-      if(comments[i].content === '') {
-        isSubmitSuccess = false;
-        break;
-      }
+  for (let i = 0; i < comments.length; i++) {
+    if (comments[i].content === '') {
+      isSubmitSuccess = false;
+      break;
     }
-    return isSubmitSuccess;
-}
+  }
+  return isSubmitSuccess;
+};
 
 const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentInfo, responseCommentInfo }) => {
   const [commentContent, setCommentContent] = useState<string>('');
@@ -33,17 +33,16 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
   };
 
   const handleResponseCommentInfo = (responseId: number): void => {
-    if(isAwaitResponse) return;
-      responseCommentInfo(responseId);
-      setIsAwaitResponse(true);
-  }
+    if (isAwaitResponse) return;
+    responseCommentInfo(responseId);
+    setIsAwaitResponse(true);
+  };
 
   useEffect(() => {
-      setCommentContent('');
-      setIsAwaitResponse(test(comments));
+    setCommentContent('');
+    setIsAwaitResponse(test(comments));
   }, [comments]);
 
-  
   console.log(comments);
   return (
     <Container>
