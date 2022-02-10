@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import type { CommentInfo } from '../modules/comments';
+import Button from './common/Button'
 
 type ChatFormProps = {
   comments: CommentInfo[];
