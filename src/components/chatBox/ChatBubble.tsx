@@ -50,6 +50,9 @@ const ChatBubbleHeader = styled.div`
 const ChatBubbleContent = styled.p`
   padding: 10px;
   width: 200px;
+  position: absolute;
+  left: 80px;
+
   background-color: white;
   border-radius: 10px;
 `;

@@ -28,22 +28,6 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
     <Container>
       <ChatTitle />
       <ChatBox />
-      <div>채팅 내용</div>
-      <div>입력박스</div>
-      <div>채팅방 제목</div>
-      <div>
-        {comments.map((comment: CommentInfo) => {
-          return (
-            <TestChatForm key={comment.messageId}>
-              {comment.userid}
-              {comment.userName}
-              <img alt="test" src={`${comment.profileImage}`} style={{ width: '100px', height: '100px' }} />
-              {comment.content}
-              {comment.date}
-            </TestChatForm>
-          );
-        })}
-      </div>
       <ChatInputContainer>
         <ChatInput
           value={commentContent}
