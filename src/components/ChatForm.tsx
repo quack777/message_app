@@ -2,9 +2,6 @@ import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import type { CommentInfo } from '../modules/comments';
 import Button from './common/Button';
-import ChatBox from '../components/chatBox/ChatBox';
-import SendDate from '../utils/SendDate';
-import ChatTitle from './chatBox/ChatTitle';
 
 type ChatFormProps = {
   comments: CommentInfo[];
