@@ -12,7 +12,6 @@ type ChatFormProps = {
 const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentInfo }) => {
   return (
     <Container>
-      <Button buttonType="test"/>
       <div>채팅방 제목</div>
       <div>채팅 내용</div>
       <div>입력박스</div>
