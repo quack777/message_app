@@ -21,19 +21,22 @@ const CommentsLoader: FC = () => {
       
     const date = '2021-02-10 23:26:34';
     const { user } = userInfo;
+    const messageId = 0;
 
     const commentInfo: CommentInfo = {
       ...user,
       date,
       content,
+      messageId,
     }
 
     dispatch(addComment(commentInfo));
     }
   };
 
-  const deleteCommentInfo = (userid: number) => {
-    dispatch(deleteComment(userid));
+  const deleteCommentInfo = (messageId: number) => {
+    console.log(messageId);
+    dispatch(deleteComment(messageId));
   };
   return (
     <ChatFromTemplate>
