@@ -1,8 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import type { CommentInfo } from '../modules/comments';
-import ChatBox from './chatBox/ChatBox';
-import ChatTitle from './chatBox/ChatTitle';
 import Button from './common/Button';
 
 type ChatFormProps = {
@@ -14,14 +12,14 @@ type ChatFormProps = {
 
 const test = (comments: CommentInfo[]): boolean => {
   let isSubmitSuccess = true;
-    for(let i = 0; i < comments.length; i++) {
-      if(comments[i].content === '') {
-        isSubmitSuccess = false;
-        break;
-      }
+  for (let i = 0; i < comments.length; i++) {
+    if (comments[i].content === '') {
+      isSubmitSuccess = false;
+      break;
     }
-    return isSubmitSuccess;
-}
+  }
+  return isSubmitSuccess;
+};
 
 const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentInfo, responseCommentInfo }) => {
   const [commentContent, setCommentContent] = useState<string>('');
@@ -33,22 +31,38 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
   };
 
   const handleResponseCommentInfo = (responseId: number): void => {
-    if(isAwaitResponse) return;
-      responseCommentInfo(responseId);
-      setIsAwaitResponse(true);
-  }
+    if (isAwaitResponse) return;
+    responseCommentInfo(responseId);
+    setIsAwaitResponse(true);
+  };
 
   useEffect(() => {
-      setCommentContent('');
-      setIsAwaitResponse(test(comments));
+    setCommentContent('');
+    setIsAwaitResponse(test(comments));
   }, [comments]);
 
-  
   console.log(comments);
   return (
     <Container>
-      <ChatTitle />
-      <ChatBox />
+      <div>채팅방 제목</div>
+      <div>
+        {comments.map((comment: CommentInfo) => {
+          return (
+            comment.content !== '' && (
+              <TestChatForm key={comment.messageId}>
+                <button type="button" onClick={() => handleResponseCommentInfo(comment.messageId)}>
+                  답장
+                </button>
+                {comment.userid}
+                {comment.userName}
+                <img alt="test" src={`${comment.profileImage}`} style={{ width: '100px', height: '100px' }} />
+                {comment.content}
+                {comment.date}
+              </TestChatForm>
+            )
+          );
+        })}
+      </div>
       <ChatInputContainer>
         <ChatInput
           value={commentContent}
