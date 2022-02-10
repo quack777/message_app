@@ -4,6 +4,7 @@ import type { CommentInfo } from '../modules/comments';
 import Button from './common/Button'
 import ChatBox from '../components/chatBox/ChatBox'
 import  SendDate  from '../utils/SendDate';
+import ChatTitle from './chatBox/ChatTitle';
 
 
 type ChatFormProps = {
@@ -15,12 +16,13 @@ type ChatFormProps = {
 const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentInfo }) => {
   return (
     <Container>
-      {SendDate()}
+      <ChatTitle/>
       <ChatBox/>
       <div>채팅 내용</div>
       <div>입력박스</div>
     </Container>
   );
+
 };
 
 const Container = styled.div``;
