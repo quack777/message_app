@@ -8,7 +8,8 @@ export type CommentInfo = {
   userName: string;
   profileImage: string;
   content: string;
-  date: string;
+  data: string;
+  sendDate: string;
 };
 
 export type CommentsInfoState = CommentInfo[];
