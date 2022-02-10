@@ -18,25 +18,16 @@ const CommentsLoader: FC = () => {
 
     if (keyCode === 'Enter' || keyCode === '') {
       // const currentDate = createDate();
-      
-    const date = '2021-02-10 23:26:34';
-    const { user } = userInfo;
-    const messageId = 0;
-
-    const commentInfo: CommentInfo = {
-      ...user,
-      date,
-      content,
-      messageId,
-    }
 
       const date = '2021-02-10 23:26:34';
       const { user } = userInfo;
+      const messageId = 0;
 
       const commentInfo: CommentInfo = {
         ...user,
         date,
         content,
+        messageId,
       };
 
       dispatch(addComment(commentInfo));
@@ -47,7 +38,6 @@ const CommentsLoader: FC = () => {
     console.log(messageId);
     dispatch(deleteComment(messageId));
   };
-
   return (
     <ChatFromTemplate>
       <ChatForm comments={comments} addCommentInfo={addCommentInfo} deleteCommentInfo={deleteCommentInfo} />

@@ -7,7 +7,7 @@ interface Modal {
   messageId: number;
 }
 
-const Modal = ({ message = '1234567891011', visible = false }) => {
+const Modal = ({ message = '1234567891011', visible = true }) => {
   const [messageContent, setMessageContent] = useState(message); // message 값 10자로 잘라서 저장해야함
 
   const handleClickDelete = () => {
@@ -24,18 +24,18 @@ const Modal = ({ message = '1234567891011', visible = false }) => {
       <ModalOverlay visible={visible} />
       <ModalWrapper visible={visible}>
         <ModalInner>
-          <div>
+          <MessageBox>
             <p>{message}</p>
-            <p>메시지를 삭제하시겠습니까?</p>
-          </div>
-          <div>
-            <button type="submit" onClick={handleClickDelete}>
+            <p>메시지를 정말 삭제하시겠습니까?</p>
+          </MessageBox>
+          <ButtonBox>
+            <Button named="delete" type="submit" onClick={handleClickDelete}>
               삭제
-            </button>
-            <button type="submit" onClick={handleModaloff}>
+            </Button>
+            <Button type="submit" onClick={handleModaloff}>
               취소
-            </button>
-          </div>
+            </Button>
+          </ButtonBox>
         </ModalInner>
       </ModalWrapper>
     </>
@@ -78,7 +78,48 @@ const ModalInner = styled.div`
   top: 50%;
   transform: translateY(-50%);
   margin: 0 auto;
-  padding: 40px 20px;
+  padding-top: 55px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 40px;
+`;
+
+const MessageBox = styled.div`
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & > p:nth-child(1) {
+    color: #084861;
+    font-weight: bold;
+    font-size: 30px;
+    margin-top: -10px;
+    margin-bottom: 15px;
+  }
+  & > p:nth-child(2) {
+    color: #98999c;
+    font-size: 18px;
+  }
+`;
+
+const ButtonBox = styled.div`
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Button = styled.button<{ named?: string }>`
+  padding: 13px 25px;
+  margin: 0 8px;
+  border-radius: 12px;
+  border-width: 0.5px;
+  color: ${(props) => (props.named === 'delete' ? '#F9F8F9' : '#98999C')};
+  background: ${(props) => (props.named === 'delete' ? '#7eb496' : '#F9F8F9')};
+  border-style: ${(props) => (props.named === 'delete' ? 'none' : 'solid')};
+  &:hover {
+    background: ${(props) => (props.named === 'delete' ? '#9FD3B6' : '#EDEDED')};
+  }
 `;
 
 export default Modal;
