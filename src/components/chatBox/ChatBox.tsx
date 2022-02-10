@@ -25,10 +25,11 @@ const ChatBox = () => {
 
 const ChatBoxContainer = styled.div`
   width: 100%;
-  height: 100%;
-
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   padding-top: 50px;
   position: relative;
   background-color: #b2c7d9;
+  padding-bottom: 10px;
 `;
 export default ChatBox;

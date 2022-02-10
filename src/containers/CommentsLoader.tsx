@@ -10,27 +10,25 @@ import type { CommentInfo } from '../modules/comments';
 
 const CommentsLoader: FC = () => {
   const comments = useSelector((state: RootState) => state.comments);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const addCommentInfo = (content: string, keyCode: string) => {
     if (content === '') return;
 
+    if (keyCode === 'Enter' || keyCode === '') {
+      const { user } = userInfo;
+      const messageId = 0;
+      const date = '2021-02-10 23:26:34';
+      // const currentDate = createDate();
 
-    if(keyCode === 'Enter' || keyCode === '') {
-      
-    const { user } = userInfo;
-    const messageId = 0;
-    const date = '2021-02-10 23:26:34';
-    // const currentDate = createDate();
+      const commentInfo: CommentInfo = {
+        ...user,
+        date,
+        content,
+        messageId,
+        responseId: null,
+      };
 
-    const commentInfo: CommentInfo = {
-      ...user,
-      date,
-      content,
-      messageId,
-      responseId: null
-    }
-      
       dispatch(addComment(commentInfo));
     }
   };
@@ -45,18 +43,23 @@ const CommentsLoader: FC = () => {
 
     const commentInfo: CommentInfo = {
       ...user,
-      date: "",
+      date: '',
       messageId,
       responseId,
-      content: ''
-    }
-  
+      content: '',
+    };
+
     dispatch(addComment(commentInfo));
-  }
+  };
 
   return (
     <ChatFromTemplate>
-      <ChatForm comments={comments} addCommentInfo={addCommentInfo} deleteCommentInfo={deleteCommentInfo} responseCommentInfo={responseCommentInfo}/>
+      <ChatForm
+        comments={comments}
+        addCommentInfo={addCommentInfo}
+        deleteCommentInfo={deleteCommentInfo}
+        responseCommentInfo={responseCommentInfo}
+      />
     </ChatFromTemplate>
   );
 };
