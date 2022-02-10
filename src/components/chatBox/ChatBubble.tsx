@@ -25,19 +25,18 @@ const ChatBubble = ({ comment, handlerFunction }: Props) => {
           <div style={{ color: '#777777', fontSize: '9px' }}>{comment.date}</div>
         </ChatBubbleHeader>
         <ChatBubbleContent>{comment.content}</ChatBubbleContent>
-        <ButtonHolder>
-          <Button messageId={comment.messageId} buttonType="답장" />
-          <Button messageId={comment.messageId} buttonType="삭제" />
-        </ButtonHolder>
       </ChatBubbleBody>
+      <ButtonHolder>
+        <Button messageId={comment.messageId} buttonType="답장" />
+        <Button messageId={comment.messageId} buttonType="삭제" />
+      </ButtonHolder>
     </ChatBubbleBox>
   );
 };
 
 const ChatBubbleBox = styled.div`
   width: 100%;
-  height: 64px;
-  margin-top: 36px;
+  margin-top: 29px;
   margin-left: 26px;
   display: flex;
   flex-direction: row;
@@ -45,7 +44,6 @@ const ChatBubbleBox = styled.div`
 const ChatBubbleHeader = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
   align-items: center;
 
   * {
@@ -55,6 +53,7 @@ const ChatBubbleHeader = styled.div`
 const ChatBubbleBody = styled.div`
   display: flex;
   height: 100%;
+  width: 100%;
   flex-direction: column;
 `;
 const ChatBubbleImage = styled.div`
@@ -64,15 +63,19 @@ const ChatBubbleImage = styled.div`
 `;
 const ChatBubbleContent = styled.p`
   padding: 10px;
-  width: 200px;
-  position: absolute;
-  left: 80px;
-
+  hieght: 100%;
   background-color: white;
   border-radius: 10px;
+  width: 150px;
+  margin-left: 5px;
 `;
 const ButtonHolder = styled.div`
   width: 100%;
-  z-index: 100;
+  z-index: 1;
+  display: flex;
+  align-items: end;
+  Button {
+    margin-left: 3px;
+  }
 `;
 export default ChatBubble;
