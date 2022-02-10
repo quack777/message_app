@@ -15,6 +15,7 @@ const CommentsLoader: FC = () => {
   const addCommentInfo = (content: string, keyCode: string) => {
     if (content === '') return;
 
+
     if(keyCode === 'Enter' || keyCode === '') {
       
     const { user } = userInfo;
