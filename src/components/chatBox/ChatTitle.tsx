@@ -27,8 +27,9 @@ left: 42px;
 top: 34px
 font-family: Roboto;
 font-style: normal;
-font-weight: normal;
+font-weight: 800;
 font-size: 24px;
+margin-left:10px;
 line-height: 28px;
 `;
 export default ChatTitle;

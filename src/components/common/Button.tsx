@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { deleteComment } from '../../modules/comments';
 
 interface Props {
+  id: number;
   buttonType: string;
-  eventHandler(event: React.MouseEventHandler<HTMLButtonElement>): void;
 }
 const CustomButton = styled.button`
   font-size: 10px;
@@ -17,9 +19,19 @@ const CustomButton = styled.button`
     border-radius: 12px;
   }
 `;
-const Button = ({ buttonType, eventHandler }: Props) => {
+const Button = ({ id, buttonType }: Props) => {
+  const dispatch = useDispatch();
+  const deleteMessage = useCallback((id: number) => dispatch(deleteComment(id)), [dispatch]);
+
+  const handlerFunction = (): void => {
+    console.log(id, typeof id);
+    if (buttonType === '삭제') {
+      deleteMessage(id);
+    }
+  };
+
   return (
-    <CustomButton type="button" onClick={() => eventHandler}>
+    <CustomButton type="button" onClick={handlerFunction}>
       {buttonType}
     </CustomButton>
   );
