@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import type { CommentInfo } from '../modules/comments';
-import Button from './common/Button'
+import Button from './common/Button';
 
 type ChatFormProps = {
   comments: CommentInfo[];
@@ -13,12 +13,12 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
   const [commentContent, setCommentContent] = useState<string>('');
 
   const changeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const currentContent =  e.target.value;
+    const currentContent = e.target.value;
     setCommentContent(currentContent);
-  }
+  };
 
   useEffect(() => {
-      setCommentContent('');
+    setCommentContent('');
   }, [comments]);
   
   return (
@@ -48,8 +48,13 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
         }
       </div>
       <ChatInputContainer>
-        <ChatInput value={commentContent} onKeyPress={(e) => addCommentInfo(commentContent, e.code)} placeholder="Write a message" onChange={changeContent}/>
-        <ChatSummitButton  onClick={() => addCommentInfo(commentContent, '')}>전송</ChatSummitButton>
+        <ChatInput
+          value={commentContent}
+          onKeyPress={(e) => addCommentInfo(commentContent, e.code)}
+          placeholder="Write a message"
+          onChange={changeContent}
+        />
+        <ChatSummitButton onClick={() => addCommentInfo(commentContent, '')}>전송</ChatSummitButton>
       </ChatInputContainer>
     </Container>
   );
