@@ -20,7 +20,7 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
   useEffect(() => {
       setCommentContent('');
   }, [comments]);
-
+  
   return (
     <Container>
       <div>채팅방 제목</div>
@@ -28,7 +28,7 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
         {
           comments.map((comment: CommentInfo) => {
             return (
-              <TestComment key={comment.userid}>
+              <TestChatForm key={comment.messageId} >
                 {
                   comment.userid
                 }
@@ -42,7 +42,7 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
                 {
                   comment.date
                 }
-              </TestComment>
+              </TestChatForm>
             )
           })
         }
@@ -57,7 +57,7 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
 
 const Container = styled.div``;
 
-const TestComment = styled.div`
+const TestChatForm = styled.div`
   margin: 20px 10px;
   font-size: 20px;
   font-weight: bold;
