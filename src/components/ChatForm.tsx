@@ -14,14 +14,14 @@ type ChatFormProps = {
 
 const test = (comments: CommentInfo[]): boolean => {
   let isSubmitSuccess = true;
-    for(let i = 0; i < comments.length; i++) {
-      if(comments[i].content === '') {
-        isSubmitSuccess = false;
-        break;
-      }
+  for (let i = 0; i < comments.length; i++) {
+    if (comments[i].content === '') {
+      isSubmitSuccess = false;
+      break;
     }
-    return isSubmitSuccess;
-}
+  }
+  return isSubmitSuccess;
+};
 
 const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentInfo, responseCommentInfo }) => {
   const [commentContent, setCommentContent] = useState<string>('');
@@ -33,17 +33,16 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
   };
 
   const handleResponseCommentInfo = (responseId: number): void => {
-    if(isAwaitResponse) return;
-      responseCommentInfo(responseId);
-      setIsAwaitResponse(true);
-  }
+    if (isAwaitResponse) return;
+    responseCommentInfo(responseId);
+    setIsAwaitResponse(true);
+  };
 
   useEffect(() => {
-      setCommentContent('');
-      setIsAwaitResponse(test(comments));
+    setCommentContent('');
+    setIsAwaitResponse(test(comments));
   }, [comments]);
 
-  
   console.log(comments);
   return (
     <Container>
@@ -64,25 +63,34 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
 
 const Container = styled.div``;
 
-const TestChatForm = styled.div`
-  margin: 20px 10px;
-  font-size: 20px;
-  font-weight: bold;
-`;
-
 const ChatInputContainer = styled.div`
   display: flex;
+  border: 1px solid #f5f5f5;
+  border-top: none;
+  padding: 5px 8px;
+  padding-bottom: px;
 `;
 
 const ChatInput = styled.textarea`
-  flex: 4;
-  padding: 15px 10px;
+  flex: 5;
+  padding: 5px 10px;
   padding-bottom: 0px;
+  box-shadow: 0 2px 2px rgb(0 0 0 / 20%);
+  border-radius: 15px;
+  border: 1px solid #f5f5f5;
+  box-shadow: 1px 2px rgb(0 0 0 / 20%);
   resize: none;
+  :focus {
+    outline: 1px solid rgb(0 0 0 / 0.1);
+  }
 `;
 
 const ChatSummitButton = styled.button`
   flex: 1;
+  margin: 5px;
+  background-color: #fee500;
+  border: 1px solid #f5f5f5;
+  border-radius: 5px;
   cursor: pointer;
 `;
 

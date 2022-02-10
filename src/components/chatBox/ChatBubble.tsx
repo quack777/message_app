@@ -36,7 +36,7 @@ const ChatBubble = ({ comment, handlerFunction }: Props) => {
 
 const ChatBubbleBox = styled.div`
   width: 100%;
-  margin-top: 29px;
+  margin-top: 25px;
   margin-left: 26px;
   display: flex;
   flex-direction: row;
@@ -45,7 +45,7 @@ const ChatBubbleHeader = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-
+  font-weight: 600;
   * {
     margin: 2px;
   }
@@ -60,6 +60,8 @@ const ChatBubbleImage = styled.div`
   borderradius: 100%;
   width: 54px;
   height: 54px;
+  margin-top: 4px;
+  margin-right: 2px;
 `;
 const ChatBubbleContent = styled.div`
   padding: 10px;
