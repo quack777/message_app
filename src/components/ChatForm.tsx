@@ -1,6 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import type { CommentInfo } from '../modules/comments';
+import ChatBox from './chatBox/ChatBox';
+import ChatTitle from './chatBox/ChatTitle';
 import Button from './common/Button';
 
 type ChatFormProps = {
