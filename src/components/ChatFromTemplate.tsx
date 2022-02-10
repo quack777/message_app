@@ -8,7 +8,6 @@ const ChatFromTemplate: FC = ({ children }) => {
 const ChatFromLayout = styled.div`
   width: 390px;
   margin: 0 auto;
-  background-color: red;
 `;
 
 export default ChatFromTemplate;
