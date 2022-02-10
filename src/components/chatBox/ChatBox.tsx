@@ -30,5 +30,6 @@ const ChatBoxContainer = styled.div`
   padding-top: 50px;
   position: relative;
   background-color: #b2c7d9;
+  padding-bottom: 10px;
 `;
 export default ChatBox;
