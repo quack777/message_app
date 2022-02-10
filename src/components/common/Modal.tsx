@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { MessageCut } from '../../utils/MessageCut';
 
 interface Modal {
   message: string;
@@ -7,8 +8,8 @@ interface Modal {
   messageId: number;
 }
 
-const Modal = ({ message = '1234567891011', visible = true }) => {
-  const [messageContent, setMessageContent] = useState(message); // message 값 10자로 잘라서 저장해야함
+const Modal = ({ message = '1234567891011135413213', visible = true }) => {
+  const [messageContent, setMessageContent] = useState<string>(MessageCut(message));
 
   const handleClickDelete = () => {
     // 모달 끄기
@@ -25,7 +26,7 @@ const Modal = ({ message = '1234567891011', visible = true }) => {
       <ModalWrapper visible={visible}>
         <ModalInner>
           <MessageBox>
-            <p>{message}</p>
+            <p>{messageContent}</p>
             <p>메시지를 정말 삭제하시겠습니까?</p>
           </MessageBox>
           <ButtonBox>
