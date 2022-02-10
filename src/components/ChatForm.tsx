@@ -8,21 +8,43 @@ import Button from './common/Button';
 type ChatFormProps = {
   comments: CommentInfo[];
   addCommentInfo: (content: string, keyCode: string) => void;
-  deleteCommentInfo: (userid: number) => void;
+  deleteCommentInfo: (messageId: number) => void;
+  responseCommentInfo: (responseId: number) => void;
 };
 
-const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentInfo }) => {
+const test = (comments: CommentInfo[]): boolean => {
+  let isSubmitSuccess = true;
+    for(let i = 0; i < comments.length; i++) {
+      if(comments[i].content === '') {
+        isSubmitSuccess = false;
+        break;
+      }
+    }
+    return isSubmitSuccess;
+}
+
+const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentInfo, responseCommentInfo }) => {
   const [commentContent, setCommentContent] = useState<string>('');
+  const [isAwaitResponse, setIsAwaitResponse] = useState<boolean>(false);
 
   const changeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const currentContent = e.target.value;
     setCommentContent(currentContent);
   };
 
+  const handleResponseCommentInfo = (responseId: number): void => {
+    if(isAwaitResponse) return;
+      responseCommentInfo(responseId);
+      setIsAwaitResponse(true);
+  }
+
   useEffect(() => {
-    setCommentContent('');
+      setCommentContent('');
+      setIsAwaitResponse(test(comments));
   }, [comments]);
 
+  
+  console.log(comments);
   return (
     <Container>
       <ChatTitle />
