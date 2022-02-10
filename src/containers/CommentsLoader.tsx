@@ -8,13 +8,12 @@ import userInfo from '../data/tmpUser.json';
 import type { RootState } from '../modules/index';
 import type { CommentInfo } from '../modules/comments';
 
-
 const CommentsLoader: FC = () => {
   const comments = useSelector((state: RootState) => state.comments);
   const dispatch = useDispatch()
 
   const addCommentInfo = (content: string, keyCode: string) => {
-    if(content === '') return;    
+    if (content === '') return;
 
     if(keyCode === 'Enter' || keyCode === '') {
       
@@ -30,8 +29,8 @@ const CommentsLoader: FC = () => {
       messageId,
       responseId: null
     }
-
-    dispatch(addComment(commentInfo));
+      
+      dispatch(addComment(commentInfo));
     }
   };
 

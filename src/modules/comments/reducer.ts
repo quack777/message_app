@@ -48,6 +48,7 @@ const initialState: CommentsInfoState = [
     date: '2021-02-10 23:26:36',
     responseId: null,
   }
+  },
 ];
 
 const comments = createReducer<CommentsInfoState, CommentsAction>(initialState, {
