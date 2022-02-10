@@ -13,19 +13,21 @@ interface Props {
 const ChatBubble = ({ comment, handlerFunction }: Props) => {
   return (
     <ChatBubbleBox>
-      <ChatBubbleHeader>
+      <ChatBubbleImage>
         <img alt="img" src={comment.profileImage} style={{ borderRadius: '100%', width: '54px', height: '54px' }} />{' '}
-        <div style={{ fontSize: '16px' }}>
-          {comment.userid === 4 ? '*' : ''}
-          {comment.userName}
-        </div>
-        <div style={{ color: '#777777', fontSize: '9px' }}>{comment.date}</div>
-      </ChatBubbleHeader>
+      </ChatBubbleImage>
       <ChatBubbleBody>
+        <ChatBubbleHeader>
+          <div style={{ fontSize: '16px' }}>
+            {comment.userid === 4 ? '*' : ''}
+            {comment.userName}
+          </div>
+          <div style={{ color: '#777777', fontSize: '9px' }}>{comment.date}</div>
+        </ChatBubbleHeader>
         <ChatBubbleContent>{comment.content}</ChatBubbleContent>
         <ButtonHolder>
-          <Button id={comment.userid} buttonType="답장" />
-          <Button id={comment.userid} buttonType="삭제" />
+          <Button messageId={comment.messageId} buttonType="답장" />
+          <Button messageId={comment.messageId} buttonType="삭제" />
         </ButtonHolder>
       </ChatBubbleBody>
     </ChatBubbleBox>
@@ -35,17 +37,30 @@ const ChatBubble = ({ comment, handlerFunction }: Props) => {
 const ChatBubbleBox = styled.div`
   width: 100%;
   height: 64px;
-  margin-top: 29px;
+  margin-top: 36px;
   margin-left: 26px;
+  display: flex;
+  flex-direction: row;
 `;
 const ChatBubbleHeader = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: row;
   align-items: center;
 
   * {
     margin: 2px;
   }
+`;
+const ChatBubbleBody = styled.div`
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+`;
+const ChatBubbleImage = styled.div`
+  borderradius: 100%;
+  width: 54px;
+  height: 54px;
 `;
 const ChatBubbleContent = styled.p`
   padding: 10px;
@@ -58,11 +73,6 @@ const ChatBubbleContent = styled.p`
 `;
 const ButtonHolder = styled.div`
   width: 100%;
-`;
-const ChatBubbleBody = styled.div`
-  display: flex;
-  align-items: center;
-
-  flex-direction: row;
+  z-index: 100;
 `;
 export default ChatBubble;

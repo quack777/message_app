@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { deleteComment } from '../../modules/comments';
 
 interface Props {
-  id: number;
+  messageId: number;
   buttonType: string;
 }
 const CustomButton = styled.button`
@@ -19,14 +19,13 @@ const CustomButton = styled.button`
     border-radius: 12px;
   }
 `;
-const Button = ({ id, buttonType }: Props) => {
+const Button = ({ messageId, buttonType }: Props) => {
   const dispatch = useDispatch();
-  const deleteMessage = useCallback((id: number) => dispatch(deleteComment(id)), [dispatch]);
+  const deleteMessage = useCallback((messageId: number) => dispatch(deleteComment(messageId)), [dispatch]);
 
   const handlerFunction = (): void => {
-    console.log(id, typeof id);
     if (buttonType === '삭제') {
-      deleteMessage(id);
+      deleteMessage(messageId);
     }
   };
 

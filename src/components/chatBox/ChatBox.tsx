@@ -12,11 +12,11 @@ const ChatBox = () => {
     console.log('test', event);
   };
   return (
-    <div style={{ overflow: 'scroll', height: '580px' }}>
+    <div style={{ overflow: 'auto', height: '580px', overflowX: 'hidden' }}>
       <div style={{ height: '97px' }} />
       <ChatBoxContainer>
         {data.map((comment: CommentInfo) => (
-          <ChatBubble key={comment.userid} comment={comment} handlerFunction={handlerFunction} />
+          <ChatBubble key={comment.messageId} comment={comment} handlerFunction={handlerFunction} />
         ))}
       </ChatBoxContainer>
     </div>
@@ -25,8 +25,7 @@ const ChatBox = () => {
 
 const ChatBoxContainer = styled.div`
   width: 100%;
-  max-height: 100%;
-  z-index: -1;
+  height: 100%;
 
   padding-top: 50px;
   position: relative;
