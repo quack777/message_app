@@ -9,12 +9,14 @@ interface Props {
 
 const ChatBox = ({ comments }: Props) => {
   const myRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     myRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
   }, [comments]);
+
   return (
     <ChantBoxBorder>
-      <div />
+      <PaddingBox />
       <ChatBoxContainer ref={myRef}>
         {comments.map((comment: CommentInfo) => (
           <ChatBubble key={comment.messageId} comments={comments} comment={comment} />
@@ -28,10 +30,12 @@ const ChantBoxBorder = styled.div`
   overflow: auto;
   height: 580px;
   overflow-x: hidden;
-  & > div:nth-child(1) {
-    height: 60px;
-  }
 `;
+
+const PaddingBox = styled.div`
+    height: 60px;
+`;
+
 const ChatBoxContainer = styled.div`
   width: 100%;
 
