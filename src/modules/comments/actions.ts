@@ -16,4 +16,4 @@ export const addComment = (commentInfo: CommentInfo) => ({
 });
 
 export const deleteComment = createAction(DELETE_COMMENT)<number>();
-export const responseComment = createAction(RESPONSE_COMMENT)<number>();
+export const responseComment = createAction(RESPONSE_COMMENT)<number | null>();
