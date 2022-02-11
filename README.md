@@ -1,4 +1,4 @@
-# **(☞ ﾟヮﾟ)☞ 🧵Wanted_pre_onboarding-5th_setting☜(ﾟヮﾟ ☜)**
+# **🧵Wanted_pre_onboarding-5th_setting☜(ﾟヮﾟ ☜)**
 
 15팀 과제
 
