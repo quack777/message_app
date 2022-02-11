@@ -1,7 +1,6 @@
 import { DefaultTheme } from 'styled-components';
 
 export const theme: DefaultTheme = {
-  // basicWidth: '366px',
   color: {
     main: '#ffffff',
     bubble: '#FFFFFF',

@@ -5,7 +5,6 @@ import { RootState } from '../modules';
 import type { CommentInfo } from '../modules/comments/types';
 import ChatBox from './chatBox/ChatBox';
 import ChatTitle from './chatBox/ChatTitle';
-import Button from './common/Button';
 
 type ChatFormProps = {
   comments: CommentInfo[];
@@ -66,15 +65,12 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
     }
   }, [responseInfo]);
 
-  console.log(comments);
   return (
     <Container>
       <ChatTitle />
-      <ChatBox />
-      {/* props로 comments넣어주기 */}
+      <ChatBox comments={comments} />
       {responseInfo.responseActive && response && (
         <div>
-          <p>답장 Btn onClick시 (해당하는 내용)이 보여집니다</p>
           <p>{response.userName}</p>
           <p>{response.content}</p>
         </div>
@@ -87,8 +83,6 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
           onChange={changeContent}
         />
         <ChatSummitButton onClick={() => addCommentInfo(commentContent, '')}>전송</ChatSummitButton>
-
-        {/* <ChatSummitButton onClick={() => addCommentInfo(commentContent, '')}>전송</ChatSummitButton> */}
       </ChatInputContainer>
     </Container>
   );

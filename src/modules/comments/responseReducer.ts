@@ -11,7 +11,7 @@ const response = createReducer<ResponseState, ResponseAction>(initailState, {
   [RESPONSE_COMMENT]: (state, action) => ({
     ...state,
     responseId: action.payload,
-    responseActive: !state.responseActive, // if (state.responseId != action.payload) responseActive = false else {!state.responseActive}
+    responseActive: !state.responseActive,
   }),
 });
 

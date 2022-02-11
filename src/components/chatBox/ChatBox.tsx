@@ -1,31 +1,41 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../modules';
 import ChatBubble from './ChatBubble';
-import { CommentsInfoState, CommentInfo } from '../../modules/comments/types';
+import { CommentInfo } from '../../modules/comments/types';
 
-const ChatBox = () => {
-  // data map 돌린 거 props로 값 넘겨줘서 comments로 맴 볻ㄹ리기
-  const data = useSelector((state: RootState) => state.comments);
-  console.log(data);
-  const handlerFunction = (event: React.MouseEventHandler<HTMLButtonElement>): void => {
-    console.log('test', event);
-  };
+interface Props {
+  comments: CommentInfo[];
+}
+
+const ChatBox = ({ comments }: Props) => {
+  const myRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    myRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+  }, [comments]);
+
   return (
-    <div style={{ overflow: 'auto', height: '580px', overflowX: 'hidden' }}>
-      <div style={{ height: '60px' }} />
-      <ChatBoxContainer>
-        {data.map((comment: CommentInfo) => (
-          <ChatBubble key={comment.messageId} comment={comment} handlerFunction={handlerFunction} />
+    <ChantBoxBorder>
+      <div />
+      <ChatBoxContainer ref={myRef}>
+        {comments.map((comment: CommentInfo) => (
+          <ChatBubble key={comment.messageId} comments={comments} comment={comment} />
         ))}
       </ChatBoxContainer>
-    </div>
+    </ChantBoxBorder>
   );
 };
 
+const ChantBoxBorder = styled.div`
+  overflow: auto;
+  height: 580px;
+  overflow-x: hidden;
+  & > div:nth-child(1) {
+    height: 60px;
+  }
+`;
 const ChatBoxContainer = styled.div`
   width: 100%;
+
   min-height: 520px;
   background-repeat: no-repeat;
   background-attachment: fixed;

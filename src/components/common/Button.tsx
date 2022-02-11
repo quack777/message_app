@@ -28,8 +28,6 @@ const Button = ({ messageId, buttonType }: Props) => {
     if (buttonType === '삭제') {
       deleteMessage(messageId);
     } else {
-      // 답장 클릭 시에 messageId뽑아오기
-      console.log(messageId);
       responseMessage(messageId);
     }
   };
