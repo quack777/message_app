@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { deleteComment } from '../../modules/comments';
+import { deleteComment, responseComment } from '../../modules/comments/actions';
 
 interface Props {
   messageId: number;
@@ -22,10 +22,14 @@ const CustomButton = styled.button`
 const Button = ({ messageId, buttonType }: Props) => {
   const dispatch = useDispatch();
   const deleteMessage = useCallback((messageId: number) => dispatch(deleteComment(messageId)), [dispatch]);
+  const responseMessage = useCallback((messageId: number) => dispatch(responseComment(messageId)), [dispatch]);
 
   const handlerFunction = (): void => {
     if (buttonType === '삭제') {
       deleteMessage(messageId);
+    } else {
+      // 답장 클릭 시에 messageId뽑아오기
+      responseMessage(messageId);
     }
   };
 
