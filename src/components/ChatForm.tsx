@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { RootState } from '../modules';
@@ -15,6 +15,8 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo }) => {
   const [commentContent, setCommentContent] = useState<string>('');
   const [responseBtnOn, setResponseBtnOn] = useState<boolean>(false);
   const [response, setResponse] = useState<CommentInfo | undefined | null>(null);
+
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   const responseInfo = useSelector((state: RootState) => state.response);
 
@@ -53,7 +55,8 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo }) => {
       )}
       <ChatInputContainer>
         <ChatInput
-          value={commentContent}
+          ref={inputRef}
+          value={commentContent.trim()}
           onKeyPress={(e) => addCommentInfo(commentContent, e.code)}
           placeholder="Write a message"
           onChange={changeContent}
