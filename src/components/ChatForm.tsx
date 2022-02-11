@@ -9,7 +9,7 @@ import Button from './common/Button';
 
 type ChatFormProps = {
   comments: CommentInfo[];
-  addCommentInfo: (content: string, keyCode: string) => void;
+  addCommentInfo: (content: string, keyCode: string, responseId?: number | null) => void;
   deleteCommentInfo: (messageId: number) => void;
   responseCommentInfo: (responseId: number) => void;
 };
@@ -71,7 +71,8 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
     <Container>
       <ChatTitle />
       <ChatBox />
-      {responseBtnOn && response && (
+      {/* props로 comments넣어주기 */}
+      {responseInfo.responseActive && response && (
         <div>
           <p>답장 Btn onClick시 (해당하는 내용)이 보여집니다</p>
           <p>{response.userName}</p>

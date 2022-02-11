@@ -23,7 +23,7 @@ const CommentsLoader: FC = () => {
       const date = SendDate();
       // const responseId: 답장 버튼 클리식 여기주기 답장 Id주기;
 
-      if (responseId) {
+      if (responseInfo.responseActive) {
         const commentInfo: CommentInfo = {
           ...user,
           date,
@@ -42,7 +42,6 @@ const CommentsLoader: FC = () => {
           responseId: null,
         };
         dispatch(addComment(commentInfo));
-        dispatch(responseComment(null));
       }
     }
   };

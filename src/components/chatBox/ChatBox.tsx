@@ -6,6 +6,7 @@ import ChatBubble from './ChatBubble';
 import { CommentsInfoState, CommentInfo } from '../../modules/comments/types';
 
 const ChatBox = () => {
+  // data map 돌린 거 props로 값 넘겨줘서 comments로 맴 볻ㄹ리기
   const data = useSelector((state: RootState) => state.comments);
   console.log(data);
   const handlerFunction = (event: React.MouseEventHandler<HTMLButtonElement>): void => {
