@@ -73,7 +73,6 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
       <ChatBox />
       {responseBtnOn && response && (
         <div>
-          <p>답장 Btn onClick시 (해당하는 내용)이 보여집니다</p>
           <p>{response.userName}</p>
           <p>{response.content}</p>
         </div>
