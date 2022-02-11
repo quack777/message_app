@@ -11,7 +11,7 @@ const ChatBox = ({ comments }: Props) => {
   const myRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    myRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+    myRef.current?.scrollIntoView({ block: 'end' });
   }, [comments]);
 
   return (

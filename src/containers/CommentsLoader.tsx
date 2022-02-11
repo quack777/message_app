@@ -14,8 +14,8 @@ const CommentsLoader: FC = () => {
   const dispatch = useDispatch();
 
   const addCommentInfo = (content: string, keyCode: string, responseId = responseInfo.responseId): void => {
-    if (content === '') return;
-
+    if (content.replace(/\n/g, "") === '') return;
+    
     if (keyCode === 'Enter' || keyCode === '') {
       const { user } = userInfo;
       const messageId = 0;
