@@ -14,8 +14,8 @@ const CommentsLoader: FC = () => {
   const dispatch = useDispatch();
 
   const addCommentInfo = (content: string, keyCode: string, responseId = responseInfo.responseId): void => {
-    if (content.replace(/\n/g, "") === '') return;
-    
+    if (content.replace(/\n/g, '') === '') return;
+
     if (keyCode === 'Enter' || keyCode === '') {
       const { user } = userInfo;
       const messageId = 0;
@@ -31,9 +31,9 @@ const CommentsLoader: FC = () => {
         };
 
         batch(() => {
-          dispatch(addComment(commentInfo)); 
-          dispatch(responseComment(null)); 
-        })
+          dispatch(addComment(commentInfo));
+          dispatch(responseComment(null));
+        });
       } else {
         const commentInfo: CommentInfo = {
           ...user,
@@ -50,10 +50,7 @@ const CommentsLoader: FC = () => {
 
   return (
     <ChatFromTemplate>
-      <ChatForm
-        comments={comments}
-        addCommentInfo={addCommentInfo}
-      />
+      <ChatForm comments={comments} addCommentInfo={addCommentInfo} />
     </ChatFromTemplate>
   );
 };

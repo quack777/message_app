@@ -5,6 +5,8 @@ import { RootState } from '../modules';
 import type { CommentInfo } from '../modules/comments/types';
 import ChatBox from './chatBox/ChatBox';
 import ChatTitle from './chatBox/ChatTitle';
+import Modal from './common/Modal';
+import useModal from '../hooks/useModal';
 
 type ChatFormProps = {
   comments: CommentInfo[];
@@ -13,8 +15,8 @@ type ChatFormProps = {
 
 const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo }) => {
   const [commentContent, setCommentContent] = useState<string>('');
-  const [responseBtnOn, setResponseBtnOn] = useState<boolean>(false);
   const [response, setResponse] = useState<CommentInfo | undefined | null>(null);
+  const { isShowing, content, handleDelete, handleCancel, showingModal } = useModal();
 
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -37,7 +39,6 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo }) => {
   }, [comments]);
 
   useEffect(() => {
-    setResponseBtnOn(responseInfo.responseActive);
     if (responseInfo.responseActive) {
       findResponseContent(responseInfo.responseId);
     }
@@ -45,8 +46,9 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo }) => {
 
   return (
     <Container>
+      <Modal isShowing={isShowing} content={content} handleDelete={handleDelete} handleCancel={handleCancel} />
       <ChatTitle />
-      <ChatBox comments={comments} />
+      <ChatBox comments={comments} showingModal={showingModal} />
       {responseInfo.responseActive && response && (
         <div>
           <p>{response.userName}</p>

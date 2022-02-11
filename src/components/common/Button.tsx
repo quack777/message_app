@@ -1,21 +1,24 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { deleteComment, responseComment } from '../../modules/comments/actions';
+import { responseComment } from '../../modules/comments/actions';
 
 interface Props {
   messageId: number;
+  content: string;
   buttonType: string;
+  showingModal(messageId: number, content: string): void;
 }
 
-const Button = ({ messageId, buttonType }: Props) => {
+const Button = ({ messageId, content, buttonType, showingModal }: Props) => {
   const dispatch = useDispatch();
-  const deleteMessage = useCallback((messageId: number) => dispatch(deleteComment(messageId)), [dispatch]);
   const responseMessage = useCallback((messageId: number) => dispatch(responseComment(messageId)), [dispatch]);
 
   const handlerFunction = (): void => {
     if (buttonType === '삭제') {
-      deleteMessage(messageId);
+      if (typeof messageId === 'number') {
+        showingModal(messageId, content);
+      }
     } else {
       responseMessage(messageId);
     }

@@ -6,9 +6,10 @@ import Button from '../common/Button';
 interface Props {
   comment: CommentInfo;
   comments: CommentInfo[];
+  showingModal(messageId: number, content: string): void;
 }
 
-const ChatBubble = ({ comment, comments }: Props) => {
+const ChatBubble = ({ comment, comments, showingModal }: Props) => {
   const [response, setResponse] = useState<CommentInfo | undefined | null>(null);
 
   const findResponseContent = (responseId: number): void => {
@@ -48,8 +49,8 @@ const ChatBubble = ({ comment, comments }: Props) => {
         </ChatBubbleContent>
       </ChatBubbleBody>
       <ButtonHolder>
-        <Button messageId={comment.messageId} buttonType="답장" />
-        <Button messageId={comment.messageId} buttonType="삭제" />
+        <Button messageId={comment.messageId} content={comment.content} buttonType="답장" showingModal={showingModal} />
+        <Button messageId={comment.messageId} content={comment.content} buttonType="삭제" showingModal={showingModal} />
       </ButtonHolder>
     </ChatBubbleBox>
   );
@@ -92,7 +93,7 @@ const ChatBubbleBody = styled.div`
   flex-direction: column;
 `;
 const ChatBubbleImage = styled.div`
-  borderradius: 100%;
+  border-radius: 100%;
   width: 54px;
   height: 54px;
   margin-top: 4px;
@@ -105,7 +106,7 @@ const ChatBubbleImage = styled.div`
 `;
 const ChatBubbleContent = styled.div`
   padding: 10px;
-  hieght: 100%;
+  height: 100%;
   word-break: break-all;
   background-color: white;
   border-radius: 10px;

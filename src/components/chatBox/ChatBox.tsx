@@ -5,9 +5,10 @@ import { CommentInfo } from '../../modules/comments/types';
 
 interface Props {
   comments: CommentInfo[];
+  showingModal(id: number, content: string): void;
 }
 
-const ChatBox = ({ comments }: Props) => {
+const ChatBox = ({ comments, showingModal }: Props) => {
   const myRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -19,7 +20,7 @@ const ChatBox = ({ comments }: Props) => {
       <PaddingBox />
       <ChatBoxContainer ref={myRef}>
         {comments.map((comment: CommentInfo) => (
-          <ChatBubble key={comment.messageId} comments={comments} comment={comment} />
+          <ChatBubble key={comment.messageId} comments={comments} comment={comment} showingModal={showingModal} />
         ))}
       </ChatBoxContainer>
     </ChantBoxBorder>
@@ -33,7 +34,7 @@ const ChantBoxBorder = styled.div`
 `;
 
 const PaddingBox = styled.div`
-    height: 60px;
+  height: 60px;
 `;
 
 const ChatBoxContainer = styled.div`
