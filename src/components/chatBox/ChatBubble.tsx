@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import comments from '../../modules/comments/reducer';
-import { CommentsInfoState, CommentInfo } from '../../modules/comments';
+import { CommentsInfoState, CommentInfo } from '../../modules/comments/types';
 import Button from '../common/Button';
+import { RootState } from '../../modules';
 
 interface Props {
   comment: CommentInfo;
@@ -11,6 +12,20 @@ interface Props {
 }
 
 const ChatBubble = ({ comment, handlerFunction }: Props) => {
+  const [response, setResponse] = useState<CommentInfo | undefined | null>(null);
+  const comments = useSelector((state: RootState) => state.comments);
+
+  const findResponseContent = (responseId: number): void => {
+    const findResponse = comments.find((comment) => responseId === comment.messageId);
+    setResponse(findResponse);
+  };
+
+  useEffect(() => {
+    if (comment.responseId) {
+      findResponseContent(comment.responseId);
+    }
+  }, []);
+
   return (
     <ChatBubbleBox>
       <ChatBubbleImage>
@@ -24,7 +39,17 @@ const ChatBubble = ({ comment, handlerFunction }: Props) => {
           </div>
           <div style={{ color: '#777777', fontSize: '9px' }}>{comment.date}</div>
         </ChatBubbleHeader>
-        <ChatBubbleContent>{comment.content}</ChatBubbleContent>
+        <ChatBubbleContent>
+          {' '}
+          {response && (
+            <ResponsiveContent>
+              <p>{response.userName}</p>
+              <p>{response.content}</p>
+              <p>(회신)</p>
+            </ResponsiveContent>
+          )}
+          {comment.content}
+        </ChatBubbleContent>
       </ChatBubbleBody>
       <ButtonHolder>
         <Button messageId={comment.messageId} buttonType="답장" />
@@ -34,9 +59,16 @@ const ChatBubble = ({ comment, handlerFunction }: Props) => {
   );
 };
 
+const ResponsiveContent = styled.div`
+  color: #756b52;
+  font-size: 13px;
+  border-bottom: 1px solid #756b52;
+  margin-bottom: 3px;
+  padding-bottom: 3px;
+`;
 const ChatBubbleBox = styled.div`
   width: 100%;
-  margin-top: 29px;
+  margin-top: 25px;
   margin-left: 26px;
   display: flex;
   flex-direction: row;
@@ -45,7 +77,7 @@ const ChatBubbleHeader = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-
+  font-weight: 600;
   * {
     margin: 2px;
   }
@@ -60,6 +92,8 @@ const ChatBubbleImage = styled.div`
   borderradius: 100%;
   width: 54px;
   height: 54px;
+  margin-top: 4px;
+  margin-right: 2px;
 `;
 const ChatBubbleContent = styled.div`
   padding: 10px;

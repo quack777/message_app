@@ -4,32 +4,29 @@ import styled from 'styled-components';
 const ChatTitle = () => {
   return (
     <ChatTitleBox>
-      <ChatTitleBoxContent>15팀 단톡방</ChatTitleBoxContent>
+      <ChatTitleBoxContent>15팀 단톡방🎈</ChatTitleBoxContent>
     </ChatTitleBox>
   );
 };
-
+// border: 1px solid black;
 const ChatTitleBox = styled.div`
-  border: 1px solid black;
   width: 390px;
-  height: 97px;
+  height: 60px;
   display: flex;
+  border-bottom: none;
   z-index: 10;
   position: fixed;
   align-items: center;
-  background-color: white;
+  background-color: #b2c7d9;
 `;
 const ChatTitleBoxContent = styled.div`
-
-width: 150px;
-height: 28px;
-left: 42px;
-top: 34px
-font-family: Roboto;
-font-style: normal;
-font-weight: 800;
-font-size: 24px;
-margin-left:10px;
-line-height: 28px;
+  width: 180px;
+  height: 28px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 24px;
+  margin-left: 10px;
+  line-height: 28px;
 `;
 export default ChatTitle;
