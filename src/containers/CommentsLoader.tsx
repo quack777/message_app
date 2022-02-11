@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { addComment, deleteComment, responseComment } from '../modules/comments/actions';
+import { batch, useDispatch, useSelector } from 'react-redux';
+import { addComment, responseComment } from '../modules/comments/actions';
 import ChatFromTemplate from '../components/ChatFromTemplate';
 import ChatForm from '../components/ChatForm';
 import userInfo from '../data/tmpUser.json';
@@ -29,8 +29,11 @@ const CommentsLoader: FC = () => {
           messageId,
           responseId,
         };
-        dispatch(addComment(commentInfo));
-        dispatch(responseComment(null));
+
+        batch(() => {
+          dispatch(addComment(commentInfo)); 
+          dispatch(responseComment(null)); 
+        })
       } else {
         const commentInfo: CommentInfo = {
           ...user,
@@ -39,28 +42,10 @@ const CommentsLoader: FC = () => {
           messageId,
           responseId: null,
         };
+
         dispatch(addComment(commentInfo));
       }
     }
-  };
-
-  const deleteCommentInfo = (messageId: number) => {
-    dispatch(deleteComment(messageId));
-  };
-
-  const responseCommentInfo = (responseId: number) => {
-    const { user } = userInfo;
-    const messageId = 0;
-
-    const commentInfo: CommentInfo = {
-      ...user,
-      date: '',
-      messageId,
-      responseId,
-      content: '',
-    };
-
-    dispatch(addComment(commentInfo));
   };
 
   return (
@@ -68,8 +53,6 @@ const CommentsLoader: FC = () => {
       <ChatForm
         comments={comments}
         addCommentInfo={addCommentInfo}
-        deleteCommentInfo={deleteCommentInfo}
-        responseCommentInfo={responseCommentInfo}
       />
     </ChatFromTemplate>
   );

@@ -8,27 +8,12 @@ import ChatTitle from './chatBox/ChatTitle';
 
 type ChatFormProps = {
   comments: CommentInfo[];
-  addCommentInfo: (content: string, keyCode: string, responseId?: number | null) => void;
-  deleteCommentInfo: (messageId: number) => void;
-  responseCommentInfo: (responseId: number) => void;
+  addCommentInfo: (content: string, keyCode: string) => void;
 };
 
-const test = (comments: CommentInfo[]): boolean => {
-  let isSubmitSuccess = true;
-  for (let i = 0; i < comments.length; i++) {
-    if (comments[i].content === '') {
-      isSubmitSuccess = false;
-      break;
-    }
-  }
-  return isSubmitSuccess;
-};
-
-const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentInfo, responseCommentInfo }) => {
+const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo }) => {
   const [commentContent, setCommentContent] = useState<string>('');
-  const [isAwaitResponse, setIsAwaitResponse] = useState<boolean>(false);
   const [responseBtnOn, setResponseBtnOn] = useState<boolean>(false);
-  const [responseId, setResponseId] = useState<number | null>(null);
   const [response, setResponse] = useState<CommentInfo | undefined | null>(null);
 
   const responseInfo = useSelector((state: RootState) => state.response);
@@ -38,17 +23,6 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
     setCommentContent(currentContent);
   };
 
-  const handleResponseCommentInfo = (responseId: number): void => {
-    if (isAwaitResponse) return;
-    responseCommentInfo(responseId);
-    setIsAwaitResponse(true);
-  };
-
-  useEffect(() => {
-    setCommentContent('');
-    setIsAwaitResponse(test(comments));
-  }, [comments]);
-
   const findResponseContent = (responseId: number | null): void => {
     if (responseId) {
       const findResponse = comments.find((comment) => responseId === comment.messageId);
@@ -57,11 +31,13 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
   };
 
   useEffect(() => {
-    console.log(responseInfo);
+    setCommentContent('');
+  }, [comments]);
+
+  useEffect(() => {
     setResponseBtnOn(responseInfo.responseActive);
     if (responseInfo.responseActive) {
       findResponseContent(responseInfo.responseId);
-      setResponseId(responseInfo.responseId);
     }
   }, [responseInfo]);
 

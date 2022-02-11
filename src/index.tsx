@@ -9,10 +9,6 @@ import GlobalStyle from './styles/global-style';
 
 const store = createStore(rootReducer, composeWithDevTools());
 
-store.subscribe(() => {
-  localStorage.setItem('comments', JSON.stringify(store.getState().comments));
-})
-
 ReactDOM.render(
   <Provider store={store}>
     <GlobalStyle />

@@ -7,18 +7,7 @@ interface Props {
   messageId: number;
   buttonType: string;
 }
-const CustomButton = styled.button`
-  font-size: 10px;
-  padding: 8px;
-  border-radius: 12px;
-  border: 1.5px solid #bbbbbb;
-  background: #f9f8f9;
 
-  &:hover {
-    background: #ededed;
-    border-radius: 12px;
-  }
-`;
 const Button = ({ messageId, buttonType }: Props) => {
   const dispatch = useDispatch();
   const deleteMessage = useCallback((messageId: number) => dispatch(deleteComment(messageId)), [dispatch]);
@@ -38,5 +27,18 @@ const Button = ({ messageId, buttonType }: Props) => {
     </CustomButton>
   );
 };
+
+const CustomButton = styled.button`
+  font-size: 10px;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1.5px solid #bbbbbb;
+  background: #f9f8f9;
+
+  &:hover {
+    background: #ededed;
+    border-radius: 12px;
+  }
+`;
 
 export default Button;

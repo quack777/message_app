@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { CommentInfo } from '../../modules/comments/types';
 import Button from '../common/Button';
-import { RootState } from '../../modules';
 
 interface Props {
   comment: CommentInfo;
