@@ -8,7 +8,6 @@ const ChatTitle = () => {
     </ChatTitleBox>
   );
 };
-// border: 1px solid black;
 const ChatTitleBox = styled.div`
   width: 390px;
   height: 60px;

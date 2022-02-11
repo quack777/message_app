@@ -53,7 +53,6 @@ const initialState: CommentsInfoState = [
 const comments = createReducer<CommentsInfoState, CommentsAction>(initialState, {
   [ADD_COMMENT]: (state, action) => state.concat(action.payload),
   [DELETE_COMMENT]: (state, action) => state.filter((info) => info.messageId !== action.payload),
-  //   [RESPONSE_COMMENT]: (state, action) => state.concat(action.payload),
 });
 
 export default comments;
