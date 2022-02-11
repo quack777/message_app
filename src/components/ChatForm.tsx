@@ -45,7 +45,7 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo }) => {
     <Container>
       <ChatTitle />
       <ChatBox comments={comments} />
-      {responseBtnOn && response && (
+      {responseInfo.responseActive && response && (
         <div>
           <p>{response.userName}</p>
           <p>{response.content}</p>

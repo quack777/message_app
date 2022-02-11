@@ -21,7 +21,7 @@ const CommentsLoader: FC = () => {
       const messageId = 0;
       const date = SendDate();
 
-      if (responseId) {
+      if (responseInfo.responseActive) {
         const commentInfo: CommentInfo = {
           ...user,
           date,
