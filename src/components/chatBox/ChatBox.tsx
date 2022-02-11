@@ -12,6 +12,7 @@ const ChatBox = ({ comments }: Props) => {
   useEffect(() => {
     myRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
   }, [comments]);
+
   return (
     <ChantBoxBorder>
       <div />

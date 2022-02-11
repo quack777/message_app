@@ -8,7 +8,7 @@ import ChatTitle from './chatBox/ChatTitle';
 
 type ChatFormProps = {
   comments: CommentInfo[];
-  addCommentInfo: (content: string, keyCode: string) => void;
+  addCommentInfo: (content: string, keyCode: string, responseId?: number | null) => void;
   deleteCommentInfo: (messageId: number) => void;
   responseCommentInfo: (responseId: number) => void;
 };
@@ -69,7 +69,7 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
     <Container>
       <ChatTitle />
       <ChatBox comments={comments} />
-      {responseBtnOn && response && (
+      {responseInfo.responseActive && response && (
         <div>
           <p>{response.userName}</p>
           <p>{response.content}</p>
