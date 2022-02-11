@@ -6,6 +6,7 @@ const ChatFromTemplate: FC = ({ children }) => {
 };
 
 const ChatFromLayout = styled.div`
+  position: relative;
   width: 390px;
   margin: 0 auto;
 `;

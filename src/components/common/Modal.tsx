@@ -1,39 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { MessageCut } from '../../utils/MessageCut';
 
 interface Modal {
-  message: string;
-  visible: boolean;
-  messageId: number;
+  isShowing: boolean;
+  content: string;
+  handleDelete(): void;
+  handleCancel(): void;
 }
 
-const Modal = ({ message = '1234567891011135413213', visible = true }) => {
-  const [messageContent, setMessageContent] = useState<string>(MessageCut(message));
-
-  const handleClickDelete = () => {
-    // 모달 끄기
-    // 메시지 삭제 reduce
-  };
-
-  const handleModaloff = () => {
-    // 모달 끄기
-  };
-
+const Modal = ({ isShowing, content, handleDelete, handleCancel }: Modal) => {
   return (
     <>
-      <ModalOverlay visible={visible} />
-      <ModalWrapper visible={visible}>
+      <ModalOverlay isShowing={isShowing} />
+      <ModalWrapper isShowing={isShowing}>
         <ModalInner>
           <MessageBox>
-            <p>{messageContent}</p>
+            <p>{MessageCut(content)}</p>
             <p>메시지를 정말 삭제하시겠습니까?</p>
           </MessageBox>
           <ButtonBox>
-            <Button named="delete" type="submit" onClick={handleClickDelete}>
+            <Button named="delete" type="submit" onClick={() => handleDelete()}>
               삭제
             </Button>
-            <Button type="submit" onClick={handleModaloff}>
+            <Button type="submit" onClick={() => handleCancel()}>
               취소
             </Button>
           </ButtonBox>
@@ -43,10 +33,10 @@ const Modal = ({ message = '1234567891011135413213', visible = true }) => {
   );
 };
 
-const ModalWrapper = styled.div<{ visible: boolean }>`
+const ModalWrapper = styled.div<{ isShowing: boolean }>`
   box-sizing: border-box;
-  display: ${(props) => (props.visible ? 'block' : 'none')};
-  position: fixed;
+  display: ${(props) => (props.isShowing ? 'block' : 'none')};
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -56,10 +46,10 @@ const ModalWrapper = styled.div<{ visible: boolean }>`
   outline: 0;
 `;
 
-const ModalOverlay = styled.div<{ visible: boolean }>`
+const ModalOverlay = styled.div<{ isShowing: boolean }>`
   box-sizing: border-box;
-  display: ${(props) => (props.visible ? 'block' : 'none')};
-  position: fixed;
+  display: ${(props) => (props.isShowing ? 'block' : 'none')};
+  position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
