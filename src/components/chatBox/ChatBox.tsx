@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../modules';
 import ChatBubble from './ChatBubble';
-import { CommentsInfoState, CommentInfo } from '../../modules/comments';
+import { CommentsInfoState, CommentInfo } from '../../modules/comments/types';
 
 const ChatBox = () => {
   const data = useSelector((state: RootState) => state.comments);

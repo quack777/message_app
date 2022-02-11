@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import comments from '../../modules/comments/reducer';
-import { CommentsInfoState, CommentInfo } from '../../modules/comments';
+import { CommentsInfoState, CommentInfo } from '../../modules/comments/types';
 import Button from '../common/Button';
 import { RootState } from '../../modules';
 

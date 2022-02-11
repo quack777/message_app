@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import type { CommentInfo } from '../modules/comments';
+import type { CommentInfo } from '../modules/comments/types';
 import ChatBox from './chatBox/ChatBox';
 import ChatTitle from './chatBox/ChatTitle';
 import Button from './common/Button';
@@ -26,6 +26,7 @@ const test = (comments: CommentInfo[]): boolean => {
 const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentInfo, responseCommentInfo }) => {
   const [commentContent, setCommentContent] = useState<string>('');
   const [isAwaitResponse, setIsAwaitResponse] = useState<boolean>(false);
+  const [responseBtnOn, setResponseBtnOn] = useState(false);
 
   const changeContent = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const currentContent = e.target.value;
@@ -48,6 +49,7 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
     <Container>
       <ChatTitle />
       <ChatBox />
+      {responseBtnOn && <p>답장 Btn onClick시 (해당하는 내용)이 보여집니다</p>}
       <ChatInputContainer>
         <ChatInput
           value={commentContent}

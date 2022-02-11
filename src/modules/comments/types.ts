@@ -2,6 +2,7 @@ import { ActionType } from 'typesafe-actions';
 import * as actions from './actions';
 
 export type CommentsAction = ActionType<typeof actions>;
+export type ResponseAction = ActionType<typeof actions>;
 
 export type CommentInfo = {
   userid: number;
@@ -14,3 +15,8 @@ export type CommentInfo = {
 };
 
 export type CommentsInfoState = CommentInfo[];
+
+export type ResponseState = {
+  responseId: null | number;
+  responseActive: boolean;
+};
