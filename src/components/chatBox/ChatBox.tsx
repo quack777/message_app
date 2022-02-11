@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import ChatBubble from './ChatBubble';
 import { CommentInfo } from '../../modules/comments/types';
@@ -8,10 +8,14 @@ interface Props {
 }
 
 const ChatBox = ({ comments }: Props) => {
+  const myRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    myRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end', inline: 'nearest' });
+  }, [comments]);
   return (
     <ChantBoxBorder>
       <div />
-      <ChatBoxContainer>
+      <ChatBoxContainer ref={myRef}>
         {comments.map((comment: CommentInfo) => (
           <ChatBubble key={comment.messageId} comments={comments} comment={comment} />
         ))}
