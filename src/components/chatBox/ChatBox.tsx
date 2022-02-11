@@ -25,6 +25,7 @@ const ChatBox = () => {
 
 const ChatBoxContainer = styled.div`
   width: 100%;
+  height: 580px;
   background-repeat: no-repeat;
   background-attachment: fixed;
   padding-top: 50px;
