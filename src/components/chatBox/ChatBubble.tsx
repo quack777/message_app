@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-import comments from '../../modules/comments/reducer';
-import { CommentsInfoState, CommentInfo } from '../../modules/comments/types';
+import { CommentInfo } from '../../modules/comments/types';
 import Button from '../common/Button';
 import { RootState } from '../../modules';
 
 interface Props {
   comment: CommentInfo;
-  handlerFunction(event: React.MouseEventHandler<HTMLButtonElement>): void;
+  comments: CommentInfo[];
 }
 
-const ChatBubble = ({ comment, handlerFunction }: Props) => {
+const ChatBubble = ({ comment, comments }: Props) => {
   const [response, setResponse] = useState<CommentInfo | undefined | null>(null);
-  const comments = useSelector((state: RootState) => state.comments);
 
   const findResponseContent = (responseId: number): void => {
     const findResponse = comments.find((comment) => responseId === comment.messageId);
@@ -29,15 +26,15 @@ const ChatBubble = ({ comment, handlerFunction }: Props) => {
   return (
     <ChatBubbleBox>
       <ChatBubbleImage>
-        <img alt="img" src={comment.profileImage} style={{ borderRadius: '100%', width: '54px', height: '54px' }} />{' '}
+        <img alt="img" src={comment.profileImage} />{' '}
       </ChatBubbleImage>
       <ChatBubbleBody>
         <ChatBubbleHeader>
-          <div style={{ fontSize: '16px' }}>
+          <div>
             {comment.userid === 4 ? '*' : ''}
             {comment.userName}
           </div>
-          <div style={{ color: '#777777', fontSize: '9px' }}>{comment.date}</div>
+          <div>{comment.date}</div>
         </ChatBubbleHeader>
         <ChatBubbleContent>
           {' '}
@@ -81,6 +78,13 @@ const ChatBubbleHeader = styled.div`
   * {
     margin: 2px;
   }
+  & > div:nth-child(1) {
+    font-size: 16px;
+  }
+  & > div:nth-child(2) {
+    color: #777777;
+    font-size: 9px;
+  }
 `;
 const ChatBubbleBody = styled.div`
   display: flex;
@@ -94,6 +98,11 @@ const ChatBubbleImage = styled.div`
   height: 54px;
   margin-top: 4px;
   margin-right: 2px;
+  img {
+    border-radius: 100%;
+    width: 54px;
+    height: 54px;
+  }
 `;
 const ChatBubbleContent = styled.div`
   padding: 10px;

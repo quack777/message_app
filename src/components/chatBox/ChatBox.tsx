@@ -1,22 +1,19 @@
-import React, { useRef, useCallback, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../modules';
 import ChatBubble from './ChatBubble';
-import { CommentsInfoState, CommentInfo } from '../../modules/comments/types';
+import { CommentInfo } from '../../modules/comments/types';
 
-const ChatBox = () => {
-  const data = useSelector((state: RootState) => state.comments);
+interface Props {
+  comments: CommentInfo[];
+}
 
-  const handlerFunction = (event: React.MouseEventHandler<HTMLButtonElement>): void => {
-    console.log('test', event);
-  };
+const ChatBox = ({ comments }: Props) => {
   return (
     <ChantBoxBorder>
-      <div style={{ height: '60px' }} />
+      <div />
       <ChatBoxContainer>
-        {data.map((comment: CommentInfo) => (
-          <ChatBubble key={comment.messageId} comment={comment} handlerFunction={handlerFunction} />
+        {comments.map((comment: CommentInfo) => (
+          <ChatBubble key={comment.messageId} comments={comments} comment={comment} />
         ))}
       </ChatBoxContainer>
     </ChantBoxBorder>
@@ -27,6 +24,9 @@ const ChantBoxBorder = styled.div`
   overflow: auto;
   height: 580px;
   overflow-x: hidden;
+  & > div:nth-child(1) {
+    height: 60px;
+  }
 `;
 const ChatBoxContainer = styled.div`
   width: 100%;

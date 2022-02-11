@@ -66,11 +66,10 @@ const ChatForm: FC<ChatFormProps> = ({ comments, addCommentInfo, deleteCommentIn
     }
   }, [responseInfo]);
 
-  console.log(comments);
   return (
     <Container>
       <ChatTitle />
-      <ChatBox />
+      <ChatBox comments={comments} />
       {responseBtnOn && response && (
         <div>
           <p>{response.userName}</p>
