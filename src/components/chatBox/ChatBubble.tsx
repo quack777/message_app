@@ -13,9 +13,9 @@ interface Props {
 
 const ChatBubble = ({ comment, handlerFunction }: Props) => {
   const [response, setResponse] = useState<CommentInfo | undefined | null>(null);
+  const comments = useSelector((state: RootState) => state.comments);
 
   const findResponseContent = (responseId: number): void => {
-    const comments = useSelector((state: RootState) => state.comments);
     const findResponse = comments.find((comment) => responseId === comment.messageId);
     setResponse(findResponse);
   };

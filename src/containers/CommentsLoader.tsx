@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addComment, deleteComment } from '../modules/comments/actions';
+import { addComment, deleteComment, responseComment } from '../modules/comments/actions';
 import ChatFromTemplate from '../components/ChatFromTemplate';
 import ChatForm from '../components/ChatForm';
 // import { createDate } from '../utils/createDate';
@@ -11,9 +11,10 @@ import SendDate from '../utils/SendDate';
 
 const CommentsLoader: FC = () => {
   const comments = useSelector((state: RootState) => state.comments);
+  const responseInfo = useSelector((state: RootState) => state.response);
   const dispatch = useDispatch();
 
-  const addCommentInfo = (content: string, keyCode: string, responseId?: number) => {
+  const addCommentInfo = (content: string, keyCode: string, responseId = responseInfo.responseId): void => {
     if (content === '') return;
 
     if (keyCode === 'Enter' || keyCode === '') {
@@ -31,6 +32,7 @@ const CommentsLoader: FC = () => {
           responseId,
         };
         dispatch(addComment(commentInfo));
+        dispatch(responseComment(null));
       } else {
         const commentInfo: CommentInfo = {
           ...user,
@@ -40,6 +42,7 @@ const CommentsLoader: FC = () => {
           responseId: null,
         };
         dispatch(addComment(commentInfo));
+        dispatch(responseComment(null));
       }
     }
   };
