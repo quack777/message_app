@@ -7,7 +7,7 @@
 ## **👫 팀원**
 
 - 조은총, 전수현, 최병현, 조용우
-- 배포주소 :
+- 배포주소 : https://trusting-ramanujan-d4d088.netlify.app/
 - React, TypeScript, Redux, typesafe-actions, JavaScript(ES6), Styled-component
 
 - 협업툴: Slack, Notion, Github
